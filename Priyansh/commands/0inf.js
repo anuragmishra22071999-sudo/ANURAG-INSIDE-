@@ -1,46 +1,45 @@
+const fs = require("fs");
+const request = require("request");
+
 module.exports.config = {
-	name: "info",
-	version: "1.0.1", 
-	hasPermssion: 0,
-	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
-	description: "Admin and Bot info.",
-	commandCategory: "...",
-	cooldowns: 1,
-	dependencies: 
-	{
-    "request":"",
-    "fs-extra":"",
-    "axios":""
-  }
+  name: "info",
+  version: "1.0.0",
+  role: 0,
+  credits: "Anurag Mishra",
+  description: "Shows bot and owner information",
+  usages: "/info",
+  cooldowns: 5,
 };
-module.exports.run = async function({ api,event,args,client,Users,Threads,__GLOBAL,Currencies }) {
-const axios = global.nodemodule["axios"];
-const request = global.nodemodule["request"];
-const fs = global.nodemodule["fs-extra"];
-const time = process.uptime(),
-		hours = Math.floor(time / (60 * 60)),
-		minutes = Math.floor((time % (60 * 60)) / 60),
-		seconds = Math.floor(time % 60);
-const moment = require("moment-timezone");
-var juswa = moment.tz("Asia/Dhaka").format("『D/MM/YYYY』 【HH:mm:ss】");
-var link =                                     
-["https://i.imgur.com/eDbdlvd.jpg"];
-var callback = () => api.sendMessage({body:` ╾━╤デ╦︻(▀̿Ĺ̯▀̿ ̿)🇮🇳 𝐀𝐃𝐌𝐈𝐍 𝐀𝐍𝐃 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 🇮🇳 
+
+module.exports.run = async function ({ api, event }) {
+  const juswa = new Date().toLocaleDateString("en-GB"); // DD/MM/YYYY format
+  const timeNow = new Date();
+  const hours = timeNow.getHours();
+  const minutes = timeNow.getMinutes();
+  const seconds = timeNow.getSeconds();
+
+  // Yahan apna image link daal
+  var link = ["https://i.imgur.com/p8TqZ2X.jpg"];
+
+  var callback = () =>
+    api.sendMessage(
+      {
+        body: ` ╾━╤デ╦︻(▀̿Ĺ̯▀̿ ̿)🇮🇳 𝐀𝐃𝐌𝐈𝐍 𝐀𝐍𝐃 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 🇮🇳 
 (⌐▀͡ ̯ʖ▀)︻̷┻̿═━一-
 
 ☄️Bot Name︎︎︎☄️  ${global.config.BOTNAME}
 
-🔥Bot Admin🔥☞︎︎︎☜︎︎︎✰ ℙ𝕣𝕚𝕪𝕒𝕟𝕤𝕙💔🥀
+🔥Bot Admin🔥☞︎︎︎☜︎︎︎✰ 𝐀𝐍𝐔𝐑𝐀𝐆 𝐌𝐈𝐒𝐇𝐑𝐀💔🥀
 
-🙈bot andmin owner facebook id link🙈➪ www.facebook.com/priyanshu.rajput.official 💞🕊️
+🙈Bot Admin Owner Facebook ID🙈 ➪ https://www.facebook.com/Anu.Anchal 💞🕊️
 
-👋For Any Kind Of Help Contact On Telegram  Username 👉 @Priyanshrajput😇
+👋For Any Kind Of Help Contact On Telegram 👉 @Anuragmishra😇
 
 ✧══════•❁❀❁•══════✧
 
-🌸Bot Prefix🌸☞︎︎︎☜︎︎︎✰ ${global.config.PREFIX}
+🌸Bot Prefix🌸 ☞︎︎︎☜︎︎︎✰ ${global.config.PREFIX}
 
-♥️Bot Owner♥️ ☞︎︎︎☜︎︎︎✰ 𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭
+♥️Bot Owner♥️ ☞︎︎︎☜︎︎︎✰ 𝐀𝐍𝐔𝐑𝐀𝐆 𝐌𝐈𝐒𝐇𝐑𝐀
 
 🥳UPTIME🥳
 
@@ -53,10 +52,16 @@ var callback = () => api.sendMessage({body:` ╾━╤デ╦︻(▀̿Ĺ̯▀̿ �
 
 🦢🍒•••ꞪɛᏒɛ ɪʂ ɮ❍┼ ❍ωɳɜɽ ɳaʍɜ•••🌷💞
 ┏━🕊️━━°❀•°:🎀🧸💙🧸🎀:°•❀°━━💞━┓
-🌸✦✧✧✧✧✰🍒ℙ𝕣𝕚𝕪𝕒𝕟𝕤𝕙🌿✰✧✧✧✧✦🌸
+🌸✦✧✧✧✧✰🍒𝐀𝐍𝐔𝐑𝐀𝐆 𝐌𝐈𝐒𝐇𝐑𝐀🌿✰✧✧✧✧✦🌸
 ┗━🕊️━━°❀•°:🎀🧸💙🧸🎀:°•❀°━━💞━┛
+`,
+        attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg"),
+      },
+      event.threadID,
+      () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")
+    );
 
-
-`,attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")); 
-      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/juswa.jpg")).on("close",() => callback());
-   };
+  return request(encodeURI(link[Math.floor(Math.random() * link.length)]))
+    .pipe(fs.createWriteStream(__dirname + "/cache/juswa.jpg"))
+    .on("close", () => callback());
+};
