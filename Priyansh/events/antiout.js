@@ -15,8 +15,8 @@ module.exports.run = async({ event, api, Threads, Users }) => {
  if (type == "self-separation") {
   api.addUserToGroup(event.logMessageData.leftParticipantFbId, event.threadID, (error, info) => {
    if (error) {
-    api.sendMessage(`Isse Dubara Add Nhi Kar Paya 🥺 ${name} Group Mai :( `, event.threadID)
-   } else api.sendMessage(`Bhag Ke Jaane Ka Nhi, ${name} Baby, Dekho Phir Se Add Kardiya Aapko`, event.threadID);
+    api.sendMessage(`इस बार एड नहीं कर पाया इसको अनुराग बॉस 🥺 ${name} ग्रुप में:( `, event.threadID)
+   } else api.sendMessage(` भाग कर नहीं जाने दूंगा आपको देखो आपको फिर से एड कर दिया अनुराग बॉस के कहने पर😘, ${name} Baby, Dekho Phir Se Add Kardiya Aapko`, event.threadID);
   })
  }
 }
