@@ -10,7 +10,7 @@ module.exports.config = {
 
 let warnings = {};
 
-module.exports.onStart = async function({ api, event, Users }) {
+module.exports.handleEvent = async function({ api, event, Users }) {
   const badwords = ["chutiya", "madarchod", "bhosdike", "randi", "gandu", "lund", "gaand", "behenchod"];
   const { threadID, messageID, senderID, body } = event;
 
@@ -37,4 +37,8 @@ module.exports.onStart = async function({ api, event, Users }) {
       warnings[senderID] = 0; // reset
     }
   }
+};
+
+module.exports.run = async function() {
+  // Ye command se koi kaam nahi karega, kyunki handleEvent auto trigger hai
 };
