@@ -1,48 +1,62 @@
 module.exports.config = {
-  name: "info",
-  version: "1.0.2",
-  role: 0,
-  credits: "Anurag Mishra",
-  description: "Shows stylish bot and owner information",
-  usages: "/info",
-  cooldowns: 5,
+	name: "info",
+	version: "1.0.1", 
+	hasPermssion: 0,
+	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
+	description: "Admin and Bot info.",
+	commandCategory: "...",
+	cooldowns: 1,
+	dependencies: 
+	{
+    "request":"",
+    "fs-extra":"",
+    "axios":""
+  }
 };
+module.exports.run = async function({ api,event,args,client,Users,Threads,__GLOBAL,Currencies }) {
+const axios = global.nodemodule["axios"];
+const request = global.nodemodule["request"];
+const fs = global.nodemodule["fs-extra"];
+const time = process.uptime(),
+		hours = Math.floor(time / (60 * 60)),
+		minutes = Math.floor((time % (60 * 60)) / 60),
+		seconds = Math.floor(time % 60);
+const moment = require("moment-timezone");
+var juswa = moment.tz("Asia/Dhaka").format("『D/MM/YYYY』 【HH:mm:ss】");
+var link =                                     
+["https://i.imgur.com/eDbdlvd.jpg"];
+var callback = () => api.sendMessage({body:` ╾━╤デ╦︻(▀̿Ĺ̯▀̿ ̿)🇮🇳 𝐀𝐃𝐌𝐈𝐍 𝐀𝐍𝐃 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 🇮🇳 
+(⌐▀͡ ̯ʖ▀)︻̷┻̿═━一-
 
-module.exports.run = async function ({ api, event }) {
-  const juswa = new Date().toLocaleDateString("en-GB"); // DD/MM/YYYY
-  const timeNow = new Date();
-  const hours = timeNow.getHours();
-  const minutes = timeNow.getMinutes();
-  const seconds = timeNow.getSeconds();
+☄️Bot Name︎︎︎☄️  ${global.config.BOTNAME}
 
-  const imageLink = "https://i.imgur.com/p8TqZ2X.jpg";
+🔥Bot Admin🔥☞︎︎︎☜︎︎︎✰ ANURAG💔🥀
 
-  const message = `
-🌸✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧🌸
-╔══• ೋ•✧๑♡๑✧•ೋ •══╗
-      𝐀𝐃𝐌𝐈𝐍 & 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎
-╚══• ೋ•✧๑♡๑✧•ೋ •══╝
+🙈bot andmin owner facebook id link🙈➪ https://www.facebook.com/Anu.Anchal 💞🕊️
 
-✨ Bot Name: ${global.config?.BOTNAME || "Unknown"}  
-👑 Bot Owner: 𝐀𝐍𝐔𝐑𝐀𝐆 𝐌𝐈𝐒𝐇𝐑𝐀  
-🌐 Facebook: https://www.facebook.com/Anu.Anchal  
-📩 Telegram: @Anuragmishra  
-
-💠 Bot Prefix: ${global.config?.PREFIX || "/"}  
-⏰ UPTIME: ${juswa} | ${hours}:${minutes}:${seconds}  
+👋For Any Kind Of Help Contact On Telegram  Username 👉 @devil2000😇
 
 ✧══════•❁❀❁•══════✧
-💖 Thanks for using ${global.config?.BOTNAME || "this bot"} 💖
-✧══════•❁❀❁•══════✧
-🌸✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧🌸
-`;
 
-  // Send message with image
-  api.sendMessage(
-    {
-      body: message,
-      attachment: await global.utils.getStream(imageLink),
-    },
-    event.threadID
-  );
-};
+🌸Bot Prefix🌸☞︎︎︎☜︎︎︎✰ ${global.config.PREFIX}
+
+♥️Bot Owner♥️ ☞︎︎︎☜︎︎︎✰ ANURAG MISHRA 
+
+🥳UPTIME🥳
+
+🌪️Today is🌪️ ☞︎︎︎☜︎︎︎✰ ${juswa} 
+
+⚡Bot is running⚡ ${hours}:${minutes}:${seconds}.
+
+✅Thanks for using ${global.config.BOTNAME} Bot🖤
+
+
+🦢🍒•••ꞪɛᏒɛ ɪʂ ɮ❍┼ ❍ωɳɜɽ ɳaʍɜ•••🌷💞
+┏━🕊️━━°❀•°:🎀🧸💙🧸🎀:°•❀°━━💞━┓
+🌸✦✧✧✧✧✰🍒ANURAG🌿✰✧✧✧✧✦🌸
+┗━🕊️━━°❀•°:🎀🧸💙🧸🎀:°•❀°━━💞━┛
+
+
+`,attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")); 
+      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/juswa.jpg")).on("close",() => callback());
+   };
