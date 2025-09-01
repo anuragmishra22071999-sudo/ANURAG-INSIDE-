@@ -1,85 +1,41 @@
-# Priyansh-Bot-V2
-
-**Priyansh-Bot-V2** is a Facebook Messenger chatbot that runs with the help of your **Facebook account's appstate (cookies)**. This bot listens to your messages in Messenger and handles multiple useful commands.
-
-##
-
-- Facebook Messenger chatbot functionality
-- Facebook login through `appstate.json` (cookies)
-- 250+ built-in commands
-- Easily customizable structure for developers
-
-## 🧰 Requirements
-
-- **Node.js version 18 or above (18+)**
-- Facebook `appstate.json` file (login cookie JSON)
-
-## ⚙️ Installation
-
-### 1. Repository Clone Karein
-
-```bash
-git clone https://github.com/codedbypriyansh/Priyansh-Bot-V2.git
-cd Priyansh-Bot-V2
-```
-
-### 2. Dependencies Installed
-
-```bash
-npm install
-```
-
-### 3. Facebook Appstate Add Do it
-
-- Paste your Facebook account's `appstate.json` file in the root folder.
-
-- Ensure that the file is valid and updated.
-
-### 4. Run the Bot
-
-```bash
-node index.js
-```
+<h1 align="center">🤖 ANURAG MISHRA</h1>
+<h3 align="center">🚀 Bot Developer | ❤️ Java & Python Lover</h3>
 
 ---
 
-## 🚀 Usage
-
-- The bot will login to your Facebook account as soon as it is launched.
-
-- It listens to Messenger chats in the background.
-
-- You can use available commands like:
-
-```
-/help
-/uptime
-/song [name]
-/info
-```
-- The bot automatically tracks group and user data (if the database is configured).
+## 👋 About Me
+- 👨‍💻 Passionate **Bot Developer**  
+- 🐍 **Python** enthusiast  
+- ☕ **Java** admirer  
+- ⚡ Always learning & building powerful automation tools  
 
 ---
 
-## Fca type 
-- You can use any one
-
-```
-fca-priyansh
-```
-```
-priyanshu-fca
-```
----
-
-## 🤝 Contributing
-
-- Suggestions and pull requests are welcome!
-
-- Before adding a new feature, please open an issue so that discussion can take place.
+## 🛠️ Tech Stack
+- **Languages:** Java, Python, JavaScript, Node.js  
+- **Frameworks:** Flask, Express, Spring  
+- **Databases:** MySQL, MongoDB  
+- **Other Skills:** API Integrations, Automation, Bot Development  
 
 ---
 
-## 👨‍💻 Author
+## 🔥 Featured Work
+- 🤖 **Messenger Bots** (Group Automation, AI Replies, Music, Stickers)  
+- ⚡ **Automation Scripts** (Task Schedulers, Message Systems)  
+- 🌐 **Web Apps** with Flask & Node.js  
 
-Developed with ❤️ by [Priyansh Rajput](https://github.com/codedbypriyansh)
+---
+
+## 📫 Connect With Me
+<p align="center">
+  <a href="https://github.com/anuragmishra22071999-sudo">
+    <img src="https://img.shields.io/badge/GitHub-Anurag--Mishra-black?style=for-the-badge&logo=github">
+  </a>
+  <a href="https://www.facebook.com/Anu.Anchal">
+    <img src="https://img.shields.io/badge/Facebook-Anurag--Mishra-blue?style=for-the-badge&logo=facebook">
+  </a>
+</p>
+
+---
+
+<h2 align="center">🔥 "Code. Automate. Conquer." 🔥</h2>
