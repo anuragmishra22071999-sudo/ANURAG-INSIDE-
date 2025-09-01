@@ -12,56 +12,36 @@ module.exports.config = {
 };
 
 module.exports.run = async function ({ api, event }) {
-  const juswa = new Date().toLocaleDateString("en-GB"); // DD/MM/YYYY format
+  const juswa = new Date().toLocaleDateString("en-GB");
   const timeNow = new Date();
   const hours = timeNow.getHours();
   const minutes = timeNow.getMinutes();
   const seconds = timeNow.getSeconds();
 
-  // Yahan apna image link daal
+  // Image link
   var link = ["https://i.imgur.com/p8TqZ2X.jpg"];
+
+  // Ensure cache folder exists
+  if (!fs.existsSync(__dirname + "/cache")) fs.mkdirSync(__dirname + "/cache");
 
   var callback = () =>
     api.sendMessage(
       {
-        body: ` ╾━╤デ╦︻(▀̿Ĺ̯▀̿ ̿)🇮🇳 𝐀𝐃𝐌𝐈𝐍 𝐀𝐍𝐃 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 🇮🇳 
-(⌐▀͡ ̯ʖ▀)︻̷┻̿═━一-
-
-☄️Bot Name︎︎︎☄️  ${global.config.BOTNAME}
-
-🔥Bot Admin🔥☞︎︎︎☜︎︎︎✰ 𝐀𝐍𝐔𝐑𝐀𝐆 𝐌𝐈𝐒𝐇𝐑𝐀💔🥀
-
-🙈Bot Admin Owner Facebook ID🙈 ➪ https://www.facebook.com/Anu.Anchal 💞🕊️
-
-👋For Any Kind Of Help Contact On Telegram 👉 @Anuragmishra😇
-
-✧══════•❁❀❁•══════✧
-
-🌸Bot Prefix🌸 ☞︎︎︎☜︎︎︎✰ ${global.config.PREFIX}
-
-♥️Bot Owner♥️ ☞︎︎︎☜︎︎︎✰ 𝐀𝐍𝐔𝐑𝐀𝐆 𝐌𝐈𝐒𝐇𝐑𝐀
-
-🥳UPTIME🥳
-
-🌪️Today is🌪️ ☞︎︎︎☜︎︎︎✰ ${juswa} 
-
-⚡Bot is running⚡ ${hours}:${minutes}:${seconds}.
-
-✅Thanks for using ${global.config.BOTNAME} Bot🖤
-
-
-🦢🍒•••ꞪɛᏒɛ ɪʂ ɮ❍┼ ❍ωɳɜɽ ɳaʍɜ•••🌷💞
-┏━🕊️━━°❀•°:🎀🧸💙🧸🎀:°•❀°━━💞━┓
-🌸✦✧✧✧✧✰🍒𝐀𝐍𝐔𝐑𝐀𝐆 𝐌𝐈𝐒𝐇𝐑𝐀🌿✰✧✧✧✧✦🌸
-┗━🕊️━━°❀•°:🎀🧸💙🧸🎀:°•❀°━━💞━┛
-`,
+        body: `╾━╤デ╦︻(▀̿Ĺ̯▀̿ ̿) 𝐀𝐃𝐌𝐈𝐍 𝐀𝐍𝐃 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎
+🔥Bot Name: ${global.config?.BOTNAME || "Unknown"}
+🔥Bot Owner: Anurag Mishra
+🌸Prefix: ${global.config?.PREFIX || "/"}
+🥳UPTIME: ${juswa} ${hours}:${minutes}:${seconds}`,
         attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg"),
       },
       event.threadID,
-      () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")
+      () => {
+        if (fs.existsSync(__dirname + "/cache/juswa.jpg")) fs.unlinkSync(__dirname + "/cache/juswa.jpg");
+      }
     );
 
-  return request(encodeURI(link[Math.floor(Math.random() * link.length)]))
+  request(encodeURI(link[Math.floor(Math.random() * link.length)]))
     .pipe(fs.createWriteStream(__dirname + "/cache/juswa.jpg"))
-    .on("close", () => callback());
+    .on("close", () => callback())
+    .on("error", (err) => console.log("Image download error:", err));
 };
